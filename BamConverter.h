@@ -105,8 +105,10 @@ void BamConverter::process() {
 		if (cnt % 1000000 == 0) { printf("."); fflush(stdout); }
 
 		qname = bam_get_canonical_name(b);
-		std::cout << "cqname = " << cqname << "qname = " << qname << std::endl;
+		std::cout << "cqname = " << cqname << " : qname = " << qname << std::endl;
 		if (bam_is_mapped(b)) {
+		  
+		  std::cout << "bam_is_mapped(b) is TRUE" << std::endl;
 		  // for collapsing
 		  if (isPaired) general_assert(b->core.tid == b2->core.tid, qname + "'s two mates are aligned to two different transcripts!");
 
@@ -130,6 +132,9 @@ void BamConverter::process() {
 		  collapseMap.insert(b, b2, prb);
 		}
 		else {
+		  std::cout << "bam_is_mapped(b) is FALSE" << std::endl;
+		  std::cout << "cqname = " << cqname << " : qname = " << qname << std::endl;
+		  
 		  assert(cqname != qname);
 		  
 		  writeCollapsedLines();
