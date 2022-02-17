@@ -105,7 +105,7 @@ void BamConverter::process() {
 		if (cnt % 1000000 == 0) { printf("."); fflush(stdout); }
 
 		qname = bam_get_canonical_name(b);
-		std::cout << "cqname = " << cqname << "qname = " << qname << endl;
+		std::cout << "cqname = " << cqname << "qname = " << qname << std::endl;
 		if (bam_is_mapped(b)) {
 		  // for collapsing
 		  if (isPaired) general_assert(b->core.tid == b2->core.tid, qname + "'s two mates are aligned to two different transcripts!");
